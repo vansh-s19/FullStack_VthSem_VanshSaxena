@@ -1,0 +1,28 @@
+.container{
+    /* display: flex; */
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center center;
+}
+
+.box1,.box2,.box3{
+    color: white;
+    padding: 20px;
+    
+}
+
+.box1{
+    background-color: #ff5733;
+    flex-grow:2;
+    flex-shrink: 2;
+    flex: 2 2 150px;
+}
+.box2{
+    background-color: #33ff57;
+    flex:2;
+}
+.box3{
+    background-color: #3357ff;
+    flex-grow:2;
+}

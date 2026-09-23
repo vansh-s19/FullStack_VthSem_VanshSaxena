@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinators</title>
+    <style>
+        *{
+            background-color:cadetblue;
+        }
+        section h2 {
+            color: aqua;
+        }
+
+        section>h2 {
+            color: blue;
+        }
+        
+        h2~p{
+            font-size:35px;
+            color:red;
+            text-shadow: 0 0 3px black;
+        }
+        h2+p{
+            font-size:35px;
+            color:yellow;
+            text-shadow: 0 0 3px black;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Heading 1</h2>
+        <p>Para 1</p>
+        <p>Para 2</p>
+        <div>
+            <h2>Heading 2</h2>
+        </div>
+    </section>
+</body>
+</html>

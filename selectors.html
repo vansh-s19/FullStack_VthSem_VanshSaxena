@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        *{
+            /* color:blue; */
+            background-color:azure;
+            margin: 0px;
+            padding:20px;
+
+        }
+        h2{
+            font-size:40px;
+            /* color:yellow; */
+
+        }
+        li{
+            font-size:40px;
+        }
+        mytag{
+            font-size:30px;
+        }
+        .ci{
+            color:yellow;
+        }
+        #myid{
+            color:blue;
+        }
+        input[type=email]{
+            border-width: 2px 3px 4px 5px;
+            border-color:red;
+        }
+        input[type=password]{
+            border-width: 2px 3px 4px 5px;
+            border-color:red;
+        }
+    </style>
+</head>
+<body>
+    <mytag>ABCDEDF</mytag>
+    <h2>Selectors</h2>
+    <ul>
+        <li class="ci">Universal</li>
+        <li>Element</li>
+        <li>Class</li>
+        <li>Id</li>
+        <li id="myid">Attribute</li>
+        <li>Combinators</li>
+        <Li>Pseudo class</Li>
+        <li>Pseudo Elements</li>
+    </ul>
+    <input type="email" placeholder="enter your email"/><br><br>
+    <input type="password" placeholder="enter password"/><br><br>
+
+</body>
+</html>
