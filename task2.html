@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VS Store - Task 2</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #F8FAFC;
+  color: #6B7280;
+  font-size: 14px;
+}
+header {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+}
+header h2 { color: #111827; }
+header a { margin-left: 20px; color: #6B7280; text-decoration: none; }
+.main {
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+}
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+  height: fit-content;
+}
+.sidebar h4 { font-size: 16px; font-weight: 600; color: #111827; margin: 12px 0 8px; }
+.sidebar label { display: block; margin-bottom: 6px; }
+.products {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+}
+.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.img-box { height: 220px; overflow: hidden; border-radius: 8px; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.card:hover img { transform: scale(1.1); }
+.badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: #DC2626;
+  color: white;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  z-index: 1;
+}
+.badge.new { background: #2563EB; }
+.cat { font-size: 13px; }
+.card h3 { font-size: 16px; font-weight: 600; color: #111827; }
+.rating { color: #F59E0B; }
+.price { font-size: 20px; font-weight: bold; color: #111827; }
+.old { font-size: 14px; text-decoration: line-through; margin-left: 6px; font-weight: normal; }
+.card button {
+  margin-top: 8px;
+  padding: 10px;
+  background: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.card button:hover { background: #1D4ED8; }
+footer { text-align: center; padding: 20px; }
+@media (min-width: 1280px) { .products { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1023px) {
+  .main { flex-direction: column; }
+  .sidebar { width: 100%; display: flex; gap: 20px; flex-wrap: wrap; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  header nav { display: none; }
+  .main { padding: 16px; }
+  .sidebar { display: none; }
+  .products { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h2>VS Store</h2>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Cart (0)</a>
+  </nav>
+</header>
+
+<div class="main">
+  <aside class="sidebar">
+    <div>
+      <h4>Category</h4>
+      <label><input type="checkbox"> Electronics</label>
+      <label><input type="checkbox"> Fashion</label>
+      <label><input type="checkbox"> Shoes</label>
+    </div>
+    <div>
+      <h4>Price</h4>
+      <label><input type="radio" name="p"> Under ₹1000</label>
+      <label><input type="radio" name="p"> ₹1000 - ₹5000</label>
+      <label><input type="radio" name="p"> Above ₹5000</label>
+    </div>
+  </aside>
+
+  <section class="products">
+    <div class="card">
+      <span class="badge">SALE</span>
+      <div class="img-box"><img src="https://picsum.photos/id/1/300/220" alt="laptop"></div>
+      <p class="cat">Electronics</p>
+      <h3>Laptop Pro 14</h3>
+      <p class="rating">★★★★☆</p>
+      <p class="price">₹54,999 <span class="old">₹62,000</span></p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="card">
+      <span class="badge new">NEW</span>
+      <div class="img-box"><img src="https://picsum.photos/id/21/300/220" alt="shoes"></div>
+      <p class="cat">Shoes</p>
+      <h3>Running Shoes</h3>
+      <p class="rating">★★★★★</p>
+      <p class="price">₹2,499</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="card">
+      <div class="img-box"><img src="https://picsum.photos/id/26/300/220" alt="bag"></div>
+      <p class="cat">Fashion</p>
+      <h3>Travel Backpack</h3>
+      <p class="rating">★★★☆☆</p>
+      <p class="price">₹1,299 <span class="old">₹1,799</span></p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="card">
+      <span class="badge">SALE</span>
+      <div class="img-box"><img src="https://picsum.photos/id/96/300/220" alt="headphones"></div>
+      <p class="cat">Electronics</p>
+      <h3>Wireless Earbuds</h3>
+      <p class="rating">★★★★☆</p>
+      <p class="price">₹1,999 <span class="old">₹2,999</span></p>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+</div>
+<footer>© 2026 VS Store | Made by Vansh Saxena</footer>
+</body>
+</html>

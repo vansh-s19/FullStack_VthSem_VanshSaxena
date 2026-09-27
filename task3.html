@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Task 3</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #F1F5F9;
+  color: #64748B;
+  display: flex;
+}
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #0F172A;
+  color: #CBD5E1;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+}
+.sidebar h2 { color: white; margin-bottom: 30px; }
+.sidebar a {
+  display: block;
+  color: #CBD5E1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.sidebar a.active { background: #4F46E5; color: white; }
+.content { flex: 1; min-width: 0; }
+header {
+  height: 64px;
+  background: white;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+}
+header h1 { font-size: 24px; color: #0F172A; }
+.ham { display: none; font-size: 22px; background: none; border: none; }
+main { padding: 32px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 24px; }
+.card { background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; }
+.card h3 { font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 14px; }
+.kpi p { font-size: 14px; font-weight: 500; }
+.kpi h2 { font-size: 28px; color: #0F172A; margin: 6px 0; }
+.up { color: #16A34A; font-size: 13px; }
+.down { color: #DC2626; font-size: 13px; }
+.row1 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chart { height: 200px; display: flex; align-items: flex-end; gap: 12px; }
+.bar { flex: 1; background: #4F46E5; border-radius: 4px 4px 0 0; }
+.list-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0; font-size: 14px; }
+.pending { color: #D97706; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 400px; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid #E2E8F0; }
+th { color: #0F172A; }
+@media (max-width: 1023px) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .sidebar { display: none; }
+  .ham { display: block; }
+  header { padding: 0 16px; }
+  main { padding: 16px; }
+  .kpis, .row1, .row2 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <h2>VS Admin</h2>
+  <a href="#" class="active">Dashboard</a>
+  <a href="#">Orders</a>
+  <a href="#">Products</a>
+  <a href="#">Customers</a>
+  <a href="#">Reports</a>
+  <a href="#">Settings</a>
+</aside>
+
+<div class="content">
+  <header>
+    <button class="ham">&#9776;</button>
+    <h1>Dashboard</h1>
+    <span>Hi, Vansh 👋</span>
+  </header>
+
+  <main>
+    <div class="kpis">
+      <div class="card kpi"><p>Total Revenue</p><h2>₹4,25,000</h2><span class="up">+12% this month</span></div>
+      <div class="card kpi"><p>Orders</p><h2>1,284</h2><span class="up">+8%</span></div>
+      <div class="card kpi"><p>New Users</p><h2>356</h2><span class="down">-3%</span></div>
+      <div class="card kpi"><p>Conversion</p><h2>3.4%</h2><span class="up">+0.5%</span></div>
+    </div>
+
+    <div class="row1">
+      <div class="card">
+        <h3>Revenue Chart</h3>
+        <div class="chart">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:75%"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Recent Orders</h3>
+        <div class="list-item"><span>#1021 Rahul</span><span class="up">Paid</span></div>
+        <div class="list-item"><span>#1022 Priya</span><span class="pending">Pending</span></div>
+        <div class="list-item"><span>#1023 Aman</span><span class="down">Failed</span></div>
+        <div class="list-item"><span>#1024 Sneha</span><span class="up">Paid</span></div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="card">
+        <h3>Traffic</h3>
+        <div class="list-item"><span>Google</span><span>52%</span></div>
+        <div class="list-item"><span>Direct</span><span>24%</span></div>
+        <div class="list-item"><span>Instagram</span><span>15%</span></div>
+        <div class="list-item"><span>Others</span><span>9%</span></div>
+      </div>
+      <div class="card">
+        <h3>Top Products</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Product</th><th>Sold</th><th>Revenue</th><th>Stock</th></tr>
+            <tr><td>Laptop Pro 14</td><td>120</td><td>₹65,99,880</td><td>32</td></tr>
+            <tr><td>Running Shoes</td><td>340</td><td>₹8,49,660</td><td>80</td></tr>
+            <tr><td>Wireless Earbuds</td><td>210</td><td>₹4,19,790</td><td>12</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

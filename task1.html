@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowTask - Task 1</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #F8FAFC;
+  color: #475569;
+  font-size: 16px;
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: #0F172A;
+}
+.links a {
+  margin-left: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  text-decoration: none;
+}
+.menu-btn {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+}
+.hero {
+  margin-top: 80px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-text {
+  max-width: 650px;
+}
+h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  color: #0F172A;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.btn {
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1px solid #4F46E5;
+  background: #4F46E5;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:hover { background: #4338CA; }
+.btn.outline { background: white; color: #4F46E5; }
+.features { padding: 60px 0; text-align: center; }
+.features h2 { font-size: 32px; color: #0F172A; margin-bottom: 48px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+.card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 24px;
+}
+.card h3 { font-size: 20px; font-weight: 600; color: #0F172A; margin: 10px 0; }
+footer { text-align: center; padding: 20px; font-size: 14px; }
+@media (max-width: 1023px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .links { display: none; }
+  .menu-btn { display: block; }
+  .hero { text-align: center; margin-top: 40px; }
+  h1 { font-size: 36px; }
+  .btn { display: block; width: 100%; margin-bottom: 10px; }
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="logo">FlowTask</div>
+    <div class="links">
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <a href="#">Docs</a>
+      <a href="#">Login</a>
+    </div>
+    <button class="menu-btn">&#9776;</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Build Better Products Faster With Our Platform</h1>
+      <p>Streamline your workflow, collaborate with your team and ship faster with our all-in-one platform.</p>
+      <button class="btn">Get Started</button>
+      <button class="btn outline">View Demo</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Powerful Features</h2>
+    <div class="cards">
+      <div class="card">
+        <span>⚡</span>
+        <h3>Fast &amp; Reliable</h3>
+        <p>Experience blazing fast performance with 99.9% uptime.</p>
+      </div>
+      <div class="card">
+        <span>👥</span>
+        <h3>Team Collaboration</h3>
+        <p>Work together with your team with real-time updates.</p>
+      </div>
+      <div class="card">
+        <span>🔒</span>
+        <h3>Secure by Design</h3>
+        <p>Your data is always protected with enterprise-grade security.</p>
+      </div>
+    </div>
+  </section>
+</div>
+<footer>Made by Vansh Saxena | GLA University</footer>
+</body>
+</html>
