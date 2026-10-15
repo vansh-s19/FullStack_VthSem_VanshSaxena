@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Summit 2026 - GLA University</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #F8FAFC;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.6;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: white;
+}
+.logo { font-weight: 700; color: #0F172A; font-size: 20px; }
+nav a { margin-left: 22px; color: #111827; text-decoration: none; font-weight: 500; }
+.menu { display: none; font-size: 22px; border: none; background: none; }
+.hero {
+  height: 600px;
+  background: #0F172A;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+.hero-box { max-width: 760px; }
+.tag { background: #7C3AED; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
+.hero h1 { font-size: 56px; font-weight: 700; line-height: 1.05; margin: 20px 0 12px; }
+.hero p { font-size: 20px; margin-bottom: 28px; }
+.btns { display: flex; justify-content: center; gap: 12px; }
+.btn {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn.main { background: #2563EB; border-color: #2563EB; }
+section { max-width: 1200px; margin: auto; padding: 50px 24px; }
+h2 { font-size: 32px; color: #111827; margin-bottom: 24px; }
+.details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.box { padding: 24px; background: white; border: 1px solid #CBD5E1; border-radius: 12px; }
+.box h3 { color: #111827; }
+.speakers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.speaker { text-align: center; }
+.speaker img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.speaker h4 { font-size: 18px; font-weight: 600; color: #111827; }
+.speaker p { font-size: 14px; }
+.row { display: grid; grid-template-columns: 120px 1fr; padding: 20px 0; border-bottom: 1px solid #E2E8F0; }
+.row.head { font-weight: 600; color: #111827; }
+.time { color: #059669; font-weight: 600; }
+footer { background: #0F172A; color: #CBD5E1; text-align: center; padding: 20px; font-size: 14px; }
+@media (max-width: 1023px) {
+  .hero h1 { font-size: 44px; }
+  .speakers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  nav { padding: 16px; }
+  .links { display: none; }
+  .menu { display: block; }
+  .hero { height: 500px; }
+  .hero h1 { font-size: 36px; }
+  .hero p { font-size: 18px; }
+  .btns { flex-direction: column; }
+  h2 { font-size: 26px; }
+  .details, .speakers { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 90px 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">GLA University</div>
+  <div class="links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Events</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="menu">&#9776;</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-box">
+    <span class="tag">Tech • Learn • Connect</span>
+    <h1>TECH SUMMIT 2026</h1>
+    <p>Innovating the Future of Technology</p>
+    <div class="btns">
+      <button class="btn main">Register Now</button>
+      <button class="btn">View Schedule</button>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Event Details</h2>
+  <div class="details">
+    <div class="box"><p>Date</p><h3>15 Oct 2026</h3><p>Friday</p></div>
+    <div class="box"><p>Venue</p><h3>GLA University</h3><p>Mathura</p></div>
+    <div class="box"><p>Speakers</p><h3>25+</h3><p>Industry Experts</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Featured Speakers</h2>
+  <div class="speakers">
+    <div class="speaker"><img src="https://i.pravatar.cc/150?img=47" alt=""><h4>Dr. Ananya Sharma</h4><p>AI Researcher</p></div>
+    <div class="speaker"><img src="https://i.pravatar.cc/150?img=12" alt=""><h4>Rahul Mehta</h4><p>CTO, TechCorp</p></div>
+    <div class="speaker"><img src="https://i.pravatar.cc/150?img=45" alt=""><h4>Priya Nair</h4><p>Product Lead</p></div>
+    <div class="speaker"><img src="https://i.pravatar.cc/150?img=15" alt=""><h4>Vikram Singh</h4><p>Cloud Architect</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Event Schedule</h2>
+  <div class="row head"><span>Time</span><span>Session</span></div>
+  <div class="row"><span class="time">10:00</span><span>Opening Ceremony</span></div>
+  <div class="row"><span class="time">11:00</span><span>AI &amp; Future</span></div>
+  <div class="row"><span class="time">12:30</span><span>Lunch</span></div>
+  <div class="row"><span class="time">02:00</span><span>Cloud Computing</span></div>
+</section>
+
+<footer>© 2026 GLA University Tech Summit | Designed by Vansh Saxena</footer>
+</body>
+</html>

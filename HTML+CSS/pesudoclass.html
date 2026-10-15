@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Class</title>
+    <style>
+
+        container{
+            display:flex;
+        }
+
+        container>div{
+            background-color: black;
+            color: white;
+            height:100px;
+            align-content:center;
+            text-align: center;
+        }
+
+        #box1{
+            flex-basis:150px;
+        }
+        #box2{
+            background-color:green;
+            flex-basis:150px;
+            flex-h
+        }
+
+        input{
+            color:white;
+            padding-bottom: 5px;
+            font-size:40px;
+            border-width:0 0 3px 0;
+        }
+        input:required{
+            border-color:yellow;
+        }
+        input:not(:checked){
+            background-color: rgb(5, 54, 84);
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="First Name" required/>
+        <br>
+        <input type="text" placeholder="Middle Name" required/>
+        <br>
+        <input type="text" placeholder="Last Name" required/>
+      
+        <input type="number" min="10" max="100"/>
+        <br>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>

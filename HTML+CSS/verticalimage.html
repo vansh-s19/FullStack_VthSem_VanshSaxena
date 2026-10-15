@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            padding: 40px;
+            gap: 50px;
+        }
+
+        .left img {
+            width: 300px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .right {
+            flex: 1;
+        }
+
+        .right h1 {
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        .right p {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="left">
+            <img src="https://picsum.photos/300/500" alt="Image">
+        </div>
+
+        <div class="right">
+            <h1>Plan a Trip</h1>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
