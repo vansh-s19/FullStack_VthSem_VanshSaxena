@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let movies = [
+            { title: "Inception", rating: 4 },
+            { title: "Interstellar", rating: 5 },
+            { title: "Avatar", rating: 3 },
+            { title: "The Dark Knight", rating: 5 }
+        ];
+
+        let movie = movies.find(movie => movie.rating === 5);
+
+        console.log(movie.title);
+    </script>
+</body>
+
+</html>
