@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Last Over - Cricket Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8f5e9;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: darkgreen;
+        }
+
+        .game {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #aaa;
+        }
+
+        .scoreboard {
+            display: flex;
+            justify-content: space-around;
+            background: #e0f2f1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .scoreboard h3 {
+            margin: 5px;
+        }
+
+        .pitch {
+            height: 180px;
+            background: #8bc34a;
+            border: 4px solid #558b2f;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .pitch::after {
+            content: "";
+            position: absolute;
+            left: 78%;
+            top: 0;
+            height: 100%;
+            border-left: 3px dashed white;
+        }
+
+        .batter {
+            position: absolute;
+            right: 8%;
+            bottom: 25px;
+            font-size: 45px;
+            z-index: 2;
+        }
+
+        .bowler {
+            position: absolute;
+            left: 5%;
+            bottom: 25px;
+            font-size: 40px;
+        }
+
+        .ball {
+            width: 18px;
+            height: 18px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 80px;
+            left: 5%;
+        }
+
+        button, select {
+            padding: 12px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background: darkgreen;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: green;
+        }
+
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+
+        #hitBtn {
+            background: #e65100;
+            font-size: 22px;
+            padding: 15px 45px;
+        }
+
+        #commentary {
+            font-size: 18px;
+            font-weight: bold;
+            color: darkgreen;
+            min-height: 28px;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: darkblue;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game">
+
+        <h1>🏏 LAST OVER</h1>
+        <p>Score 12 runs in 6 balls to win!</p>
+
+        <label>Select Difficulty:</label>
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <div class="scoreboard">
+            <div>
+                <h3 id="runs">0</h3>
+                Runs
+            </div>
+
+            <div>
+                <h3 id="balls">6</h3>
+                Balls Left
+            </div>
+
+            <div>
+                <h3 id="needed">12</h3>
+                Runs Needed
+            </div>
+
+            <div>
+                <h3 id="wickets">0</h3>
+                Wickets
+            </div>
+        </div>
+
+        <div class="pitch">
+
+            <div class="bowler">🏃</div>
+
+            <div class="ball" id="ball"></div>
+
+            <div class="batter">🏏</div>
+
+        </div>
+
+        <p id="commentary">Click Start Game to begin!</p>
+
+        <button id="startBtn" onclick="startGame()">
+            Start Game
+        </button>
+
+        <br>
+
+        <button id="hitBtn" onclick="hitBall()" disabled>
+            HIT! 🏏
+        </button>
+
+        <p>Or press SPACEBAR to hit!</p>
+
+        <h3 id="result"></h3>
+
+        <p id="best">Best Score: 0</p>
+
+        <button id="againBtn" class="hidden" onclick="startGame()">
+            Play Again
+        </button>
+
+    </div>
+
+    <script>
+
+        // Game variables
+
+        let runs = 0;
+        let balls = 6;
+        let wickets = 0;
+        let target = 12;
+
+        let ballPosition = 5;
+        let ballSpeed = 1;
+        let gameTimer;
+        let gameRunning = false;
+        let ballMoving = false;
+
+        let perfectWindow = 4;
+        let goodWindow = 12;
+
+        // Difficulty settings
+
+        function setDifficulty() {
+
+            let difficulty = document.getElementById("difficulty").value;
+
+            if (difficulty === "easy") {
+                ballSpeed = 0.8;
+                perfectWindow = 6;
+                goodWindow = 15;
+                target = 10;
+            }
+
+            else if (difficulty === "medium") {
+                ballSpeed = 1.3;
+                perfectWindow = 4;
+                goodWindow = 11;
+                target = 12;
+            }
+
+            else {
+                ballSpeed = 2;
+                perfectWindow = 2;
+                goodWindow = 7;
+                target = 15;
+            }
+
+        }
+
+        // Start game
+
+        function startGame() {
+
+            clearInterval(gameTimer);
+
+            runs = 0;
+            balls = 6;
+            wickets = 0;
+
+            gameRunning = true;
+            ballMoving = false;
+
+            document.getElementById("result").innerText = "";
+            document.getElementById("commentary").innerText = "Get ready!";
+
+            document.getElementById("startBtn").classList.add("hidden");
+            document.getElementById("againBtn").classList.add("hidden");
+
+            document.getElementById("difficulty").disabled = true;
+
+            document.getElementById("hitBtn").disabled = true;
+
+            setDifficulty();
+            updateScore();
+
+            nextBall();
+        }
+
+        // Move ball towards batter
+
+        function nextBall() {
+
+            if (!gameRunning) return;
+
+            if (balls <= 0 || wickets >= 2 || runs >= target) {
+                endGame();
+                return;
+            }
+
+            ballPosition = 5;
+
+            document.getElementById("ball").style.left = "5%";
+
+            document.getElementById("commentary").innerText =
+                "Ball " + (7 - balls) + " is coming...";
+
+            ballMoving = true;
+
+            document.getElementById("hitBtn").disabled = false;
+
+            gameTimer = setInterval(function() {
+
+                ballPosition += ballSpeed;
+
+                document.getElementById("ball").style.left =
+                    ballPosition + "%";
+
+                // Ball reaches the end
+
+                if (ballPosition >= 90) {
+
+                    clearInterval(gameTimer);
+
+                    ballMoving = false;
+
+                    document.getElementById("hitBtn").disabled = true;
+
+                    balls--;
+
+                    if (Math.random() < 0.2) {
+                        wickets++;
+                        document.getElementById("commentary").innerText =
+                            "OUT! Clean bowled! 🥲";
+                    }
+
+                    else {
+                        document.getElementById("commentary").innerText =
+                            "Dot ball! No runs.";
+                    }
+
+                    updateScore();
+
+                    setTimeout(nextBall, 1300);
+
+                }
+
+            }, 20);
+
+        }
+
+        // Hit the ball
+
+        function hitBall() {
+
+            if (!gameRunning || !ballMoving) return;
+
+            clearInterval(gameTimer);
+
+            ballMoving = false;
+
+            document.getElementById("hitBtn").disabled = true;
+
+            let distance = Math.abs(ballPosition - 78);
+
+            let scored = 0;
+
+            // Perfect timing
+
+            if (distance <= perfectWindow) {
+
+                scored = 6;
+
+                document.getElementById("commentary").innerText =
+                    "SIX! That's gone into the stands! 🏏";
+
+            }
+
+            // Slightly early or late
+
+            else if (distance <= goodWindow) {
+
+                if (ballPosition < 78) {
+                    scored = 4;
+
+                    document.getElementById("commentary").innerText =
+                        "FOUR! Beautiful shot!";
+
+                }
+
+                else {
+                    scored = 1;
+
+                    document.getElementById("commentary").innerText =
+                        "Just a single! Good running.";
+                }
+
+            }
+
+            // Bad timing
+
+            else {
+
+                if (Math.random() < 0.3) {
+
+                    wickets++;
+
+                    document.getElementById("commentary").innerText =
+                        "OUT! What a delivery!";
+
+                }
+
+                else {
+
+                    scored = 0;
+
+                    document.getElementById("commentary").innerText =
+                        "Missed it! Dot ball.";
+
+                }
+
+            }
+
+            runs += scored;
+            balls--;
+
+            updateScore();
+
+            setTimeout(nextBall, 1300);
+
+        }
+
+        // Update scoreboard
+
+        function updateScore() {
+
+            document.getElementById("runs").innerText = runs;
+
+            document.getElementById("balls").innerText = balls;
+
+            document.getElementById("needed").innerText =
+                Math.max(0, target - runs);
+
+            document.getElementById("wickets").innerText = wickets;
+
+        }
+
+        // Win or lose
+
+        function endGame() {
+
+            gameRunning = false;
+            ballMoving = false;
+
+            clearInterval(gameTimer);
+
+            document.getElementById("hitBtn").disabled = true;
+
+            document.getElementById("difficulty").disabled = false;
+
+            let result = document.getElementById("result");
+
+            if (runs >= target) {
+
+                result.innerText = "🏆 YOU WON! Amazing Chase!";
+
+            }
+
+            else {
+
+                result.innerText = "😢 YOU LOST! Better Luck Next Time!";
+
+            }
+
+            // Save best score
+
+            let best = Number(localStorage.getItem("bestScore")) || 0;
+
+            if (runs > best) {
+
+                best = runs;
+
+                localStorage.setItem("bestScore", best);
+
+            }
+
+            document.getElementById("best").innerText =
+                "Best Score: " + best;
+
+            document.getElementById("againBtn").classList.remove("hidden");
+
+        }
+
+        // Spacebar control
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.code === "Space") {
+
+                event.preventDefault();
+
+                hitBall();
+
+            }
+
+        });
+
+        // Show saved best score
+
+        document.getElementById("best").innerText =
+            "Best Score: " +
+            (localStorage.getItem("bestScore") || 0);
+
+    </script>
+
+</body>
+</html>

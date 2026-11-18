@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factorial Memoization</title>
+</head>
+<body>
+
+    <h2>Factorial using Memoization</h2>
+
+    <input type="number" id="num" placeholder="Enter a number">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+
+        function memoize(fun) {
+
+            const cache = {};
+
+            return function(x) {
+
+                if (cache[x] !== undefined) {
+                    console.log("From cache");
+                    return cache[x];
+                }
+
+                const res = fun(x);
+
+                cache[x] = res;
+
+                return res;
+            }
+        }
+
+        const factorial = memoize(function(n) {
+
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+
+            return n * factorial(n - 1);
+
+        });
+
+        function calculate() {
+
+            let n = Number(document.getElementById("num").value);
+
+            if (document.getElementById("num").value === "" || n < 0 || !Number.isInteger(n)) {
+                document.getElementById("result").innerHTML = "Enter a valid non-negative integer";
+                return;
+            }
+
+            let ans = factorial(n);
+
+            document.getElementById("result").innerHTML = "Factorial = " + ans;
+
+        }
+
+    </script>
+
+</body>
+</html>
